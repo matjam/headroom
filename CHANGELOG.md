@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/matjam/headroom/compare/v1.2.1...v1.3.0) (2026-03-29)
+
+
+### Features
+
+* show version number in settings, remove Done button ([3f0f998](https://github.com/matjam/headroom/commit/3f0f998ba24bac26e9e6b4e32a9947c38eeffa56))
+* show version number in settings, remove Done button ([bb6512a](https://github.com/matjam/headroom/commit/bb6512a093d2d8cc04c8ea7325ce99dfdb9551f9))
+
 ## [1.2.1](https://github.com/matjam/headroom/compare/v1.2.0...v1.2.1) (2026-03-29)
 
 
