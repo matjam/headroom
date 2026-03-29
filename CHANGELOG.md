@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.3](https://github.com/matjam/headroom/compare/v1.5.2...v1.5.3) (2026-03-29)
+
+
+### Bug Fixes
+
+* use git short SHA as build number ([40f8493](https://github.com/matjam/headroom/commit/40f8493ed5d88365f6a701c25a219c231adad4d5))
+* use git short SHA as build number instead of duplicating version ([1308a60](https://github.com/matjam/headroom/commit/1308a6056450e27a496e2bbaf0fe420a5a95c314))
+
 ## [1.5.2](https://github.com/matjam/headroom/compare/v1.5.1...v1.5.2) (2026-03-29)
 
 
