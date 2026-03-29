@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.0](https://github.com/matjam/headroom/compare/v1.4.0...v1.5.0) (2026-03-29)
+
+
+### Features
+
+* show version number in settings, derive from git tags ([7d64dd4](https://github.com/matjam/headroom/commit/7d64dd4607d95cbc56a667c1a29b1e3a0d925095))
+* version from git tags + fix Sparkle codesigning ([62366c0](https://github.com/matjam/headroom/commit/62366c0fe7e25db6f8b73bb61db2b92bc9e9a722))
+
 ## [1.4.0](https://github.com/matjam/headroom/compare/v1.3.0...v1.4.0) (2026-03-29)
 
 
