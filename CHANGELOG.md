@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.2](https://github.com/matjam/headroom/compare/v1.5.1...v1.5.2) (2026-03-29)
+
+
+### Bug Fixes
+
+* fetch tags in CI so version is stamped from git tag ([d11db1a](https://github.com/matjam/headroom/commit/d11db1a9569bb754f0f610f304239da5b1572d3a))
+* stamp version from git tags and fetch tags in CI ([7d7fcd1](https://github.com/matjam/headroom/commit/7d7fcd1f15f8fae679ed5653f4f933491b200e82))
+
 ## [1.5.1](https://github.com/matjam/headroom/compare/v1.5.0...v1.5.1) (2026-03-29)
 
 
