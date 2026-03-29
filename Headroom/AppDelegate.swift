@@ -157,11 +157,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         let settingsView = SettingsView(
             settings: appState.settings,
-            appState: appState,
-            onDismiss: { [weak self] in
-                self?.settingsWindow?.close()
-                self?.settingsWindow = nil
-            }
+            appState: appState
         )
 
         let hostingView = NSHostingView(rootView: settingsView)

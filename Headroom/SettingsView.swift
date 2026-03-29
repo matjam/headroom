@@ -4,9 +4,13 @@ import SwiftUI
 struct SettingsView: View {
     @ObservedObject var settings: AppSettings
     @ObservedObject var appState: AppState
-    let onDismiss: () -> Void
-
     @State private var formatText: String = ""
+
+    private var appVersion: String {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "?"
+        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "?"
+        return "v\(version) (\(build))"
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -15,9 +19,9 @@ struct SettingsView: View {
                 Text("Settings")
                     .font(.headline)
                 Spacer()
-                Button("Done") { onDismiss() }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.small)
+                Text("Headroom \(appVersion)")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
 
             Divider()
