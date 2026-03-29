@@ -6,16 +6,16 @@
     <description>Most recent changes with links to updates.</description>
     <language>en</language>
     <item>
-      <title>Version 1.5.3</title>
-      <sparkle:version>1.5.3</sparkle:version>
-      <sparkle:shortVersionString>1.5.3</sparkle:shortVersionString>
+      <title>Version 1.5.4</title>
+      <sparkle:version>1.5.4</sparkle:version>
+      <sparkle:shortVersionString>1.5.4</sparkle:shortVersionString>
       <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-      <pubDate>Sun, 29 Mar 2026 13:49:24 +0000</pubDate>
+      <pubDate>Sun, 29 Mar 2026 13:58:53 +0000</pubDate>
       <enclosure
-        url="https://github.com/matjam/headroom/releases/download/v1.5.3/Headroom.dmg"
-        length="5024938"
+        url="https://github.com/matjam/headroom/releases/download/v1.5.4/Headroom.dmg"
+        length="5027429"
         type="application/octet-stream"
-        sparkle:edSignature="cKKjA2nOiZHMJSHGE2ZaDCA3s3l/8kOgjgapYLeVbXaG9aOd8OSKqM+fH2kInpSXAD3EFu1UZSXajzYQPmeiDQ=="
+        sparkle:edSignature="pjm/raLhfX3C5dkGbVKM/VPWSfbVqvl3C2vIJgI5rsEK6eug3MEeP56JtfuACTWt0huQHnhfKdhGeH3/iLEZBg=="
       />
     </item>
   </channel>
