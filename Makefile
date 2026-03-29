@@ -62,21 +62,26 @@ dmg: release
 	fi; \
 	cp -R "$$APP_PATH/$(APP_NAME).app" $(DMG_STAGING)/
 ifdef DEVELOPMENT_TEAM
-	@# Deep re-sign all embedded frameworks and helpers with Developer ID
+	@# Re-sign embedded Sparkle components with Developer ID, preserving entitlements
 	@echo "Re-signing embedded binaries with Developer ID..."
-	@find $(DMG_STAGING)/$(APP_NAME).app/Contents/Frameworks -type f -perm +111 -o -name "*.dylib" | while read binary; do \
-		codesign --force --options runtime --timestamp --sign "Developer ID Application" "$$binary" 2>/dev/null || true; \
+	@# Sign XPC services (innermost first)
+	@for xpc in $(DMG_STAGING)/$(APP_NAME).app/Contents/Frameworks/Sparkle.framework/Versions/B/XPCServices/*.xpc; do \
+		[ -d "$$xpc" ] && codesign --force --options runtime --timestamp --sign "Developer ID Application" --preserve-metadata=entitlements "$$xpc" && echo "  Signed: $$(basename $$xpc)"; \
 	done
-	@find $(DMG_STAGING)/$(APP_NAME).app/Contents/Frameworks -name "*.xpc" -type d | while read xpc; do \
-		codesign --force --deep --options runtime --timestamp --sign "Developer ID Application" "$$xpc"; \
-	done
-	@find $(DMG_STAGING)/$(APP_NAME).app/Contents/Frameworks -name "*.app" -type d | while read app; do \
-		codesign --force --deep --options runtime --timestamp --sign "Developer ID Application" "$$app"; \
-	done
-	@find $(DMG_STAGING)/$(APP_NAME).app/Contents/Frameworks -name "*.framework" -type d -maxdepth 1 | while read fw; do \
-		codesign --force --deep --options runtime --timestamp --sign "Developer ID Application" "$$fw"; \
-	done
-	@codesign --force --deep --options runtime --timestamp --entitlements Headroom/Headroom.entitlements --sign "Developer ID Application" $(DMG_STAGING)/$(APP_NAME).app
+	@# Sign Updater.app
+	@if [ -d "$(DMG_STAGING)/$(APP_NAME).app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app" ]; then \
+		codesign --force --options runtime --timestamp --sign "Developer ID Application" --preserve-metadata=entitlements "$(DMG_STAGING)/$(APP_NAME).app/Contents/Frameworks/Sparkle.framework/Versions/B/Updater.app" && echo "  Signed: Updater.app"; \
+	fi
+	@# Sign Autoupdate binary
+	@if [ -f "$(DMG_STAGING)/$(APP_NAME).app/Contents/Frameworks/Sparkle.framework/Versions/B/Autoupdate" ]; then \
+		codesign --force --options runtime --timestamp --sign "Developer ID Application" "$(DMG_STAGING)/$(APP_NAME).app/Contents/Frameworks/Sparkle.framework/Versions/B/Autoupdate" && echo "  Signed: Autoupdate"; \
+	fi
+	@# Sign Sparkle framework
+	@codesign --force --options runtime --timestamp --sign "Developer ID Application" "$(DMG_STAGING)/$(APP_NAME).app/Contents/Frameworks/Sparkle.framework"
+	@echo "  Signed: Sparkle.framework"
+	@# Sign the main app (not --deep, just the top level)
+	@codesign --force --options runtime --timestamp --entitlements Headroom/Headroom.entitlements --sign "Developer ID Application" $(DMG_STAGING)/$(APP_NAME).app
+	@echo "  Signed: $(APP_NAME).app"
 	@echo "Verifying signature..."
 	@codesign --verify --deep --strict $(DMG_STAGING)/$(APP_NAME).app
 endif
