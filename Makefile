@@ -28,11 +28,18 @@ endif
 generate: check-deps
 	DEVELOPMENT_TEAM="$(DEVELOPMENT_TEAM)" xcodegen generate
 
+# If no signing team, use ad-hoc signing
+ifdef DEVELOPMENT_TEAM
+SIGNING_ARGS :=
+else
+SIGNING_ARGS := CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+endif
+
 build: generate
-	xcodebuild -project $(APP_NAME).xcodeproj -scheme $(APP_NAME) -configuration Debug build
+	xcodebuild -project $(APP_NAME).xcodeproj -scheme $(APP_NAME) -configuration Debug $(SIGNING_ARGS) build
 
 release: generate
-	xcodebuild -project $(APP_NAME).xcodeproj -scheme $(APP_NAME) -configuration Release build
+	xcodebuild -project $(APP_NAME).xcodeproj -scheme $(APP_NAME) -configuration Release $(SIGNING_ARGS) build
 
 dmg: release
 	@echo "Creating $(DMG_NAME) v$(VERSION)..."
