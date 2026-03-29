@@ -15,11 +15,11 @@ DMG_NAME := $(APP_NAME).dmg
 DMG_DIR := dist
 DMG_STAGING := $(DMG_DIR)/staging
 
-# Derive version from git tag (e.g. v1.0.4 -> 1.0.4), build number from short SHA
+# Derive version from git tag (e.g. v1.0.4 -> 1.0.4)
 GIT_VERSION := $(shell git describe --tags --abbrev=0 2>/dev/null | sed 's/^v//')
 GIT_SHA := $(shell git rev-parse --short HEAD 2>/dev/null || echo "unknown")
 VERSION := $(if $(GIT_VERSION),$(GIT_VERSION),0.0.0-dev)
-VERSION_ARGS := MARKETING_VERSION=$(VERSION) CURRENT_PROJECT_VERSION=$(GIT_SHA)
+VERSION_ARGS := MARKETING_VERSION=$(VERSION) CURRENT_PROJECT_VERSION=$(VERSION) GIT_COMMIT_SHA=$(GIT_SHA)
 
 check-deps:
 ifndef XCODEGEN

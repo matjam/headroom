@@ -35,5 +35,7 @@
     <true/>
     <key>SUScheduledCheckInterval</key>
     <integer>86400</integer>
+    <key>GitCommitSHA</key>
+    <string>$(GIT_COMMIT_SHA)</string>
 </dict>
 </plist>
