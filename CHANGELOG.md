@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.3](https://github.com/matjam/headroom/compare/v1.1.2...v1.1.3) (2026-03-29)
+
+
+### Bug Fixes
+
+* strip get-task-allow entitlement from release builds ([b46cbc3](https://github.com/matjam/headroom/commit/b46cbc33ab888a43b4dee42df1d39408799b0fb3))
+* strip get-task-allow entitlement from release builds ([7a5c2f6](https://github.com/matjam/headroom/commit/7a5c2f62396073b6cdb3ec06d8700994e3051ea8))
+
 ## [1.1.2](https://github.com/matjam/headroom/compare/v1.1.1...v1.1.2) (2026-03-29)
 
 
