@@ -83,13 +83,35 @@ jobs:
           APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
           APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
-          # Submit for notarization
+          # Submit for notarization and capture the submission ID
           echo "Submitting dist/Headroom.dmg for notarization..."
-          xcrun notarytool submit dist/Headroom.dmg \
+          SUBMIT_OUTPUT=$(xcrun notarytool submit dist/Headroom.dmg \
             --apple-id "$APPLE_ID" \
             --password "$APPLE_ID_PASSWORD" \
             --team-id "$APPLE_TEAM_ID" \
-            --wait
+            --wait \
+            --output-format json 2>&1) || true
+
+          echo "$SUBMIT_OUTPUT"
+
+          # Extract submission ID and status
+          SUBMISSION_ID=$(echo "$SUBMIT_OUTPUT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('id',''))" 2>/dev/null || true)
+          STATUS=$(echo "$SUBMIT_OUTPUT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('status',''))" 2>/dev/null || true)
+
+          echo "Submission ID: $SUBMISSION_ID"
+          echo "Status: $STATUS"
+
+          # If notarization failed, fetch the log for debugging
+          if [ "$STATUS" != "Accepted" ]; then
+            echo "Notarization failed. Fetching log..."
+            xcrun notarytool log "$SUBMISSION_ID" \
+              --apple-id "$APPLE_ID" \
+              --password "$APPLE_ID_PASSWORD" \
+              --team-id "$APPLE_TEAM_ID" \
+              developer_log.json 2>&1 || true
+            cat developer_log.json 2>/dev/null || true
+            exit 1
+          fi
 
           # Staple the notarization ticket to the DMG
           echo "Stapling notarization ticket..."
