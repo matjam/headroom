@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1](https://github.com/matjam/headroom/compare/v1.2.0...v1.2.1) (2026-03-29)
+
+
+### Bug Fixes
+
+* deep re-sign Sparkle framework binaries for notarization ([41a540d](https://github.com/matjam/headroom/commit/41a540d626812273db3aa57b0935f72608afb3e3))
+* deep re-sign Sparkle framework binaries with Developer ID ([17fd6cb](https://github.com/matjam/headroom/commit/17fd6cbafd473a06b2a569ae719c6b422521ed65))
+
 ## [1.2.0](https://github.com/matjam/headroom/compare/v1.1.3...v1.2.0) (2026-03-29)
 
 
