@@ -28,11 +28,12 @@ endif
 generate: check-deps
 	DEVELOPMENT_TEAM="$(DEVELOPMENT_TEAM)" xcodegen generate
 
-# If no signing team, use ad-hoc signing
-# If signing team is set, use Developer ID for release, Apple Development for debug
+# Signing configuration:
+#   - No DEVELOPMENT_TEAM: ad-hoc signing (CI, contributors)
+#   - DEVELOPMENT_TEAM set: Apple Development for debug, Developer ID for release
 ifdef DEVELOPMENT_TEAM
-DEBUG_SIGNING := CODE_SIGN_IDENTITY="Apple Development"
-RELEASE_SIGNING := CODE_SIGN_IDENTITY="Developer ID Application"
+DEBUG_SIGNING := CODE_SIGN_STYLE=Automatic CODE_SIGN_IDENTITY="Apple Development"
+RELEASE_SIGNING := CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="Developer ID Application" ENABLE_HARDENED_RUNTIME=YES
 else
 DEBUG_SIGNING := CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
 RELEASE_SIGNING := CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
