@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.0](https://github.com/matjam/headroom/compare/v1.3.0...v1.4.0) (2026-03-29)
+
+
+### Features
+
+* show version number in settings, derive from git tags ([84abf59](https://github.com/matjam/headroom/commit/84abf5964b5fddb0fbf52edf344a85c2ec305d89))
+* show version number in settings, remove Done button ([0196ed5](https://github.com/matjam/headroom/commit/0196ed511e2d6465230457715feb1d3efe884e5f))
+
 ## [1.3.0](https://github.com/matjam/headroom/compare/v1.2.1...v1.3.0) (2026-03-29)
 
 
