@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/matjam/headroom/compare/v1.0.0...v1.1.0) (2026-03-29)
+
+
+### Features
+
+* Developer ID signing and notarization for releases ([ae74e8e](https://github.com/matjam/headroom/commit/ae74e8e3d2e7f50b8e72918b25f07a9a70970098))
+* Developer ID signing and notarization for releases ([31efc87](https://github.com/matjam/headroom/commit/31efc875614751b1761fa6a4903640652b32ae07))
+
 ## 1.0.0 (2026-03-29)
 
 
