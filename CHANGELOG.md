@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/matjam/headroom/compare/v1.1.3...v1.2.0) (2026-03-29)
+
+
+### Features
+
+* add Sparkle auto-update support ([f622e25](https://github.com/matjam/headroom/commit/f622e25d19dcdb3e117745696ce97a120e89b591))
+* Sparkle auto-update support ([2282453](https://github.com/matjam/headroom/commit/2282453f9a3045e748ca03741299822002bf7e38))
+
 ## [1.1.3](https://github.com/matjam/headroom/compare/v1.1.2...v1.1.3) (2026-03-29)
 
 
