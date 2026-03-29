@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.2](https://github.com/matjam/headroom/compare/v1.1.1...v1.1.2) (2026-03-29)
+
+
+### Bug Fixes
+
+* add secure timestamp and notarization log on failure ([6bf26ab](https://github.com/matjam/headroom/commit/6bf26ab3c48a9c625773fa1a276e59edb3773649))
+* add secure timestamp to release signing and fetch notarization log on failure ([65e7215](https://github.com/matjam/headroom/commit/65e7215df38319b5856bcb19591340b74683ddac))
+
 ## [1.1.1](https://github.com/matjam/headroom/compare/v1.1.0...v1.1.1) (2026-03-29)
 
 
