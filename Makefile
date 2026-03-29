@@ -29,17 +29,20 @@ generate: check-deps
 	DEVELOPMENT_TEAM="$(DEVELOPMENT_TEAM)" xcodegen generate
 
 # If no signing team, use ad-hoc signing
+# If signing team is set, use Developer ID for release, Apple Development for debug
 ifdef DEVELOPMENT_TEAM
-SIGNING_ARGS :=
+DEBUG_SIGNING := CODE_SIGN_IDENTITY="Apple Development"
+RELEASE_SIGNING := CODE_SIGN_IDENTITY="Developer ID Application"
 else
-SIGNING_ARGS := CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+DEBUG_SIGNING := CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+RELEASE_SIGNING := CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
 endif
 
 build: generate
-	xcodebuild -project $(APP_NAME).xcodeproj -scheme $(APP_NAME) -configuration Debug $(SIGNING_ARGS) build
+	xcodebuild -project $(APP_NAME).xcodeproj -scheme $(APP_NAME) -configuration Debug $(DEBUG_SIGNING) build
 
 release: generate
-	xcodebuild -project $(APP_NAME).xcodeproj -scheme $(APP_NAME) -configuration Release $(SIGNING_ARGS) build
+	xcodebuild -project $(APP_NAME).xcodeproj -scheme $(APP_NAME) -configuration Release $(RELEASE_SIGNING) build
 
 dmg: release
 	@echo "Creating $(DMG_NAME) v$(VERSION)..."

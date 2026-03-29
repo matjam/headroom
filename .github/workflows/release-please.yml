@@ -38,8 +38,8 @@ jobs:
 
       - name: Install signing certificate
         env:
-          CERTIFICATE_P12: ${{ secrets.CERTIFICATE_P12 }}
-          CERTIFICATE_PASSWORD: ${{ secrets.CERTIFICATE_PASSWORD }}
+          DEVELOPER_ID_P12: ${{ secrets.DEVELOPER_ID_P12 }}
+          DEVELOPER_ID_PASSWORD: ${{ secrets.DEVELOPER_ID_PASSWORD }}
         run: |
           # Create a temporary keychain
           KEYCHAIN_PATH=$RUNNER_TEMP/signing.keychain-db
@@ -51,10 +51,10 @@ jobs:
 
           # Decode and import the certificate
           CERT_PATH=$RUNNER_TEMP/certificate.p12
-          echo "$CERTIFICATE_P12" | base64 --decode > "$CERT_PATH"
+          echo "$DEVELOPER_ID_P12" | base64 --decode > "$CERT_PATH"
 
           security import "$CERT_PATH" \
-            -P "$CERTIFICATE_PASSWORD" \
+            -P "$DEVELOPER_ID_PASSWORD" \
             -A \
             -t cert \
             -f pkcs12 \
@@ -74,8 +74,28 @@ jobs:
 
       - name: Build DMG
         env:
-          DEVELOPMENT_TEAM: ${{ secrets.DEVELOPMENT_TEAM }}
+          DEVELOPMENT_TEAM: ${{ secrets.APPLE_TEAM_ID }}
         run: make dmg
+
+      - name: Notarize DMG
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          # Submit for notarization
+          echo "Submitting dist/Headroom.dmg for notarization..."
+          xcrun notarytool submit dist/Headroom.dmg \
+            --apple-id "$APPLE_ID" \
+            --password "$APPLE_ID_PASSWORD" \
+            --team-id "$APPLE_TEAM_ID" \
+            --wait
+
+          # Staple the notarization ticket to the DMG
+          echo "Stapling notarization ticket..."
+          xcrun stapler staple dist/Headroom.dmg
+
+          echo "Notarization complete."
 
       - name: Upload DMG to release
         env:
