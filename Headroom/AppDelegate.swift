@@ -75,7 +75,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 onLogin: { [weak self] in self?.openLoginWindow() },
                 onLogout: { [weak self] in self?.appState.logout() },
                 onSettings: { [weak self] in self?.openSettingsWindow() },
-                onCheckForUpdates: { [weak self] in self?.updaterController.checkForUpdates(nil) }
+                onCheckForUpdates: { [weak self] in
+                    self?.popover.performClose(nil)
+                    NSApp.activate(ignoringOtherApps: true)
+                    self?.updaterController.checkForUpdates(nil)
+                }
             )
         )
     }
