@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.5](https://github.com/matjam/headroom/compare/v1.5.4...v1.5.5) (2026-03-29)
+
+
+### Bug Fixes
+
+* bring Sparkle update window to front ([11d6f1a](https://github.com/matjam/headroom/commit/11d6f1a3b39a623985e406aa36b5029a7e489d05))
+* bring Sparkle update window to front ([e1f2cc1](https://github.com/matjam/headroom/commit/e1f2cc1b0716b8b762490e274831e8d7619ffe15))
+
 ## [1.5.4](https://github.com/matjam/headroom/compare/v1.5.3...v1.5.4) (2026-03-29)
 
 
