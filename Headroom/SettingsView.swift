@@ -8,12 +8,9 @@ struct SettingsView: View {
 
     private var appVersion: String {
         let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "?"
-        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "?"
-        return "v\(version) (\(build))"
+        let sha = Bundle.main.infoDictionary?["GitCommitSHA"] as? String ?? "?"
+        return "v\(version) (\(sha))"
     }
-
-    // Note: CFBundleShortVersionString = marketing version (e.g. 1.5.2)
-    //       CFBundleVersion = git short SHA (e.g. abc1234)
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
