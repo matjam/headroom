@@ -1,0 +1,36 @@
+name: Headroom
+options:
+  bundleIdPrefix: net.stupendous
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "16.0"
+  generateEmptyDirectories: false
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    CODE_SIGN_IDENTITY: "Apple Development"
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ${DEVELOPMENT_TEAM}
+    PRODUCT_BUNDLE_IDENTIFIER: net.stupendous.headroom
+
+targets:
+  Headroom:
+    type: application
+    platform: macOS
+    sources:
+      - Headroom
+    settings:
+      base:
+        INFOPLIST_FILE: Headroom/Info.plist
+        PRODUCT_NAME: Headroom
+        LD_RUNPATH_SEARCH_PATHS:
+          - "@executable_path/../Frameworks"
+        ENABLE_APP_SANDBOX: false
+        ENABLE_HARDENED_RUNTIME: false
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    entitlements:
+      path: Headroom/Headroom.entitlements
+      properties:
+        com.apple.security.network.client: true
