@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.1](https://github.com/matjam/headroom/compare/v1.5.0...v1.5.1) (2026-03-29)
+
+
+### Bug Fixes
+
+* add MARKETING_VERSION defaults so Info.plist version placeholders resolve ([6a8d456](https://github.com/matjam/headroom/commit/6a8d4564746789fc7ace85d3ad7e0b2f5e291afd))
+* resolve Info.plist version placeholders for Sparkle updates ([4911187](https://github.com/matjam/headroom/commit/49111872d2a58c04a26a37a159a309b89ea3ff75))
+
 ## [1.5.0](https://github.com/matjam/headroom/compare/v1.4.0...v1.5.0) (2026-03-29)
 
 
