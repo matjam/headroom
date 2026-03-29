@@ -6,6 +6,7 @@ struct UsagePopoverView: View {
     let onLogin: () -> Void
     let onLogout: () -> Void
     let onSettings: () -> Void
+    let onCheckForUpdates: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -201,6 +202,7 @@ struct UsagePopoverView: View {
                             NSWorkspace.shared.open(url)
                         }
                     }
+                    Button("Check for Updates...") { onCheckForUpdates() }
                     Divider()
                     Button("Sign Out") { onLogout() }
                     Button("Quit") { NSApplication.shared.terminate(nil) }

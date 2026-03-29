@@ -1,6 +1,7 @@
 import AppKit
 import SwiftUI
 import Combine
+import Sparkle
 
 @MainActor
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -10,6 +11,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var cancellables = Set<AnyCancellable>()
     private var loginWindow: NSWindow?
     private var settingsWindow: NSWindow?
+    let updaterController: SPUStandardUpdaterController
+
+    override init() {
+        // Initialize Sparkle updater before app finishes launching
+        updaterController = SPUStandardUpdaterController(startingUpdater: true, updaterDelegate: nil, userDriverDelegate: nil)
+        super.init()
+    }
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         // Create the popover that drops down from the menu bar
@@ -66,7 +74,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 appState: appState,
                 onLogin: { [weak self] in self?.openLoginWindow() },
                 onLogout: { [weak self] in self?.appState.logout() },
-                onSettings: { [weak self] in self?.openSettingsWindow() }
+                onSettings: { [weak self] in self?.openSettingsWindow() },
+                onCheckForUpdates: { [weak self] in self?.updaterController.checkForUpdates(nil) }
             )
         )
     }

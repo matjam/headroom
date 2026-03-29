@@ -27,5 +27,13 @@
         <key>NSAllowsArbitraryLoads</key>
         <false/>
     </dict>
+    <key>SUPublicEDKey</key>
+    <string>Ki8ue+jLRkl3ChzmpEKiXgoZl/x5W215g42VAMx2eeg=</string>
+    <key>SUFeedURL</key>
+    <string>https://matjam.github.io/headroom/appcast.xml</string>
+    <key>SUEnableAutomaticChecks</key>
+    <true/>
+    <key>SUScheduledCheckInterval</key>
+    <integer>86400</integer>
 </dict>
 </plist>
