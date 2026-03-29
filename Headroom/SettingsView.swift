@@ -12,6 +12,9 @@ struct SettingsView: View {
         return "v\(version) (\(build))"
     }
 
+    // Note: CFBundleShortVersionString = marketing version (e.g. 1.5.2)
+    //       CFBundleVersion = git short SHA (e.g. abc1234)
+
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             // Header
