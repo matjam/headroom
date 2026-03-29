@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.4](https://github.com/matjam/headroom/compare/v1.5.3...v1.5.4) (2026-03-29)
+
+
+### Bug Fixes
+
+* use semver for CFBundleVersion, show git SHA separately ([cc4b422](https://github.com/matjam/headroom/commit/cc4b422fec1203d76147b7dd9dcb263b3f9334e5))
+* use semver for CFBundleVersion, show git SHA separately ([5191702](https://github.com/matjam/headroom/commit/5191702764e57b633334face792e5bc2c1731439))
+
 ## [1.5.3](https://github.com/matjam/headroom/compare/v1.5.2...v1.5.3) (2026-03-29)
 
 
