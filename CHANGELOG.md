@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/matjam/headroom/compare/v1.1.0...v1.1.1) (2026-03-29)
+
+
+### Bug Fixes
+
+* resolve code signing conflict in release builds ([9476cf8](https://github.com/matjam/headroom/commit/9476cf81a2e075cd11cee29b05238276d3026a4a))
+* resolve code signing conflict in release builds ([c2a184d](https://github.com/matjam/headroom/commit/c2a184da3a6f2ff7ee08d5d3fbd4c0073150c564))
+
 ## [1.1.0](https://github.com/matjam/headroom/compare/v1.0.0...v1.1.0) (2026-03-29)
 
 
