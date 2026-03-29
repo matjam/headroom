@@ -14,7 +14,11 @@ APP_NAME := Headroom
 DMG_NAME := $(APP_NAME).dmg
 DMG_DIR := dist
 DMG_STAGING := $(DMG_DIR)/staging
-VERSION := $(shell /usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" Headroom/Info.plist 2>/dev/null || echo "1.0")
+
+# Derive version from git tag (e.g. v1.0.4 -> 1.0.4), fallback to Info.plist
+GIT_VERSION := $(shell git describe --tags --abbrev=0 2>/dev/null | sed 's/^v//')
+VERSION := $(if $(GIT_VERSION),$(GIT_VERSION),$(shell /usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" Headroom/Info.plist 2>/dev/null || echo "1.0"))
+VERSION_ARGS := MARKETING_VERSION=$(VERSION) CURRENT_PROJECT_VERSION=$(VERSION)
 
 check-deps:
 ifndef XCODEGEN
@@ -40,10 +44,10 @@ RELEASE_SIGNING := CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_
 endif
 
 build: generate
-	xcodebuild -project $(APP_NAME).xcodeproj -scheme $(APP_NAME) -configuration Debug $(DEBUG_SIGNING) build
+	xcodebuild -project $(APP_NAME).xcodeproj -scheme $(APP_NAME) -configuration Debug $(DEBUG_SIGNING) $(VERSION_ARGS) build
 
 release: generate
-	xcodebuild -project $(APP_NAME).xcodeproj -scheme $(APP_NAME) -configuration Release $(RELEASE_SIGNING) build
+	xcodebuild -project $(APP_NAME).xcodeproj -scheme $(APP_NAME) -configuration Release $(RELEASE_SIGNING) $(VERSION_ARGS) build
 
 dmg: release
 	@echo "Creating $(DMG_NAME) v$(VERSION)..."
